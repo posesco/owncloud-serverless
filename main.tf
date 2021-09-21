@@ -279,12 +279,3 @@ resource "aws_elasticache_replication_group" "this" {
   security_group_ids            = [aws_security_group.this.id]
   tags                          = var.tags
 }
-
-module "efs_owncloud" {
-  source          = "git::https://gitlab.wiedii.co/puma/terraform-efs.git?ref=1.0.3"
-  name            = "efs_${var.organization}_${var.project}"
-  subnet_ids      = [aws_subnet.this.id, aws_subnet.this_b.id]
-  security_groups = [aws_security_group.this.id]
-  access_points   = ["/owncloud"]
-  tags            = var.tags
-}
